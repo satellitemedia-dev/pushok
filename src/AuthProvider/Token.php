@@ -98,7 +98,7 @@ class Token implements AuthProviderInterface
      * @param array $options
      * @return Token
      */
-    public static function create(array $options): Token
+    public static function create(array $options)
     {
         $token = new self($options);
         $token->token = $token->generate();
@@ -113,7 +113,7 @@ class Token implements AuthProviderInterface
      * @param array $options
      * @return Token
      */
-    public static function useExisting(string $tokenString, array $options): Token
+    public static function useExisting($tokenString, array $options)
     {
         $token = new self($options);
         $token->token = $tokenString;
@@ -139,7 +139,7 @@ class Token implements AuthProviderInterface
      *
      * @return string
      */
-    public function get(): string
+    public function get()
     {
         return $this->token;
     }
@@ -149,7 +149,7 @@ class Token implements AuthProviderInterface
      *
      * @return JWKInterface
      */
-    private function generatePrivateECKey(): JWKInterface
+    private function generatePrivateECKey()
     {
         return JWKFactory::createFromKeyFile($this->privateKeyPath, $this->privateKeySecret, [
             'kid' => $this->keyId,
@@ -163,7 +163,7 @@ class Token implements AuthProviderInterface
      *
      * @return array
      */
-    private function getClaimsPayload(): array
+    private function getClaimsPayload()
     {
         return [
             'iss' => $this->teamId,
@@ -177,7 +177,7 @@ class Token implements AuthProviderInterface
      * @param JWKInterface $privateECKey
      * @return array
      */
-    private function getProtectedHeader(JWKInterface $privateECKey): array
+    private function getProtectedHeader(JWKInterface $privateECKey)
     {
         return [
             'alg' => self::HASH_ALGORITHM,
@@ -190,7 +190,7 @@ class Token implements AuthProviderInterface
      *
      * @return string
      */
-    private function generate(): string
+    private function generate()
     {
         $privateECKey = $this->generatePrivateECKey();
 

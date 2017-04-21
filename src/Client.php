@@ -44,7 +44,7 @@ class Client
      * @param AuthProviderInterface $authProvider
      * @param bool $isProductionEnv
      */
-    public function __construct(AuthProviderInterface $authProvider, bool $isProductionEnv = false)
+    public function __construct(AuthProviderInterface $authProvider, $isProductionEnv = false)
     {
         $this->authProvider = $authProvider;
         $this->isProductionEnv = $isProductionEnv;
@@ -55,7 +55,7 @@ class Client
      *
      * @return ApnsResponseInterface[]
      */
-    public function push(): array
+    public function push()
     {
         $mh = curl_multi_init();
 
